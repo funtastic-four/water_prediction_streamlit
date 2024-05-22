@@ -20,9 +20,14 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Load the saved models
 # pickle
-model_path = os.path.join(working_dir, "saved_models", "XGB_model.pkl")
-with open(model_path, 'rb') as f:
-    water_model = pickle.load(f)
+#model_path = os.path.join(working_dir, "saved_models", "XGB_model.pkl")
+#with open(model_path, 'rb') as f:
+#    water_model = pickle.load(f)
+def load_model():
+    with open('saved_models/XGB_model.pkl', 'rb') as f:
+        return pickle.load(f)
+
+water_model = load_model()
 
 # Sidebar navigation
 with st.sidebar:
