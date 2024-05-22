@@ -6,8 +6,7 @@ from streamlit_option_menu import option_menu
 import base64
 import io
 
-
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import plotly.express as px
 
 import pandas as pd
