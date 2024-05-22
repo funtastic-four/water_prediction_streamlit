@@ -429,7 +429,7 @@ if selected == 'Analytics':
         threshold = threshold_percentage * len(df)
         df['categoryA_modified'] = df['categoryA'].apply(
             lambda x: x if category_counts[x] >= threshold else 'Other')
-        fig1 = px.pie(df, names='categoryA', title='CategoryA Distribution')
+        fig1 = px.pie(df, names='categoryA_modified', title='CategoryA Distribution')
         st.plotly_chart(fig1, use_container_width=True)
       
       elif selected_view == "Unit Distribution":
@@ -484,7 +484,7 @@ if selected == 'Analytics':
     fig3 = px.bar(df, x='categoryC', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryC by FeatureD,FeatureE,FeatureF,CompositionC')
     st.plotly_chart(fig3, use_container_width=True)
 
-    fig4 = px.bar(df, x='categoryA', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
+    fig4 = px.bar(df, x='categoryA_modified', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
     st.plotly_chart(fig4, use_container_width=True)
 
 # Water Prediction Page
