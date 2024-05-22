@@ -10,10 +10,6 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-from xgboost import XGBRegressor
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor,GradientBoostingRegressor
-
 st.set_page_config(
     page_title="Water Prediction",
     layout="wide",
