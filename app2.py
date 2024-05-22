@@ -1,14 +1,13 @@
 import os
-import pickle
-import joblib
-import streamlit as st
-from streamlit_option_menu import option_menu
-import base64
 import io
-import plotly.express as px
-
-import pandas as pd
+import base64
+import pickle
 import numpy as np
+import pandas as pd
+from PIL import Image
+import streamlit as st
+import plotly.express as px
+from streamlit_option_menu import option_menu
 
 st.set_page_config(
     page_title="Water Prediction",
@@ -21,7 +20,7 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Load the saved models
 # pickle
-model_path = "/content/drive/MyDrive/GreatEdu/Final_Project/saved_models/RandomF_model.pkl"
+model_path = os.path.join(working_dir, "saved_models", "XGB_model.pkl")
 with open(model_path, 'rb') as f:
     water_model = pickle.load(f)
 
@@ -45,63 +44,63 @@ with st.sidebar:
 @st.cache_data
 # Dataset Describe
 def load_data():
-  dataset_path = "/content/drive/MyDrive/GreatEdu/Final_Project/dataset1/dataset_baruku.csv"
+  dataset_path = os.path.join(working_dir, "dataset1/dataset_baruku.csv")
   data = pd.read_csv(dataset_path)
   return data
 
 # Dataset Train Mix (categorical and numeric)
 def load_data2():
-  dataset_path2 = "/content/drive/MyDrive/GreatEdu/Final_Project/dataset1/dataset_desc.csv"
+  dataset_path2 = os.path.join(working_dir, "dataset1/dataset_desc.csv")
   data = pd.read_csv(dataset_path2)
   return data
 
 # All Numeric Dataset Train
 def load_data3():
-  dataset_path3 = "/content/drive/MyDrive/GreatEdu/Final_Project/dataset/df_baru.csv"
+  dataset_path3 = os.path.join(working_dir, "dataset1/df_baru.csv")
   data = pd.read_csv(dataset_path3)
   return data
 
 # Home Page
 if selected == 'Home':
-  from PIL import Image
-
+ # from PIL import Image
+    
   # Load the image background
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/background.png"
+  image_path = os.path.join(working_dir, "Foto/background.png")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="PNG")
   img_str = base64.b64encode(buffered.getvalue()).decode()
 
   # Load the image logo merdeka
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/merdeka.png"
+  image_path = os.path.join(working_dir, "Foto/merdeka.png")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="PNG")
   img_str1 = base64.b64encode(buffered.getvalue()).decode()
 
   # Load the image logo msib
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/msib.png"
+  image_path = os.path.join(working_dir, "Foto/msib.png")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="PNG")
   img_str2 = base64.b64encode(buffered.getvalue()).decode()
 
     # Load the image logo GreatEdu
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/greatedu.png"
+  image_path = os.path.join(working_dir, "Foto/greatedu.png")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="PNG")
   img_str6 = base64.b64encode(buffered.getvalue()).decode()
 
   # Load the image logo Tut Wuri Handayani
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/Tut Wuri Handayani.png"
+  image_path = os.path.join(working_dir, "Foto/Tut Wuri Handayani.png")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="PNG")
   img_str3 = base64.b64encode(buffered.getvalue()).decode()
 
   # Load the image logo air
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/air.jpeg"
+  image_path = os.path.join(working_dir, "Foto/air.jpeg")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="JPEG")
@@ -297,10 +296,10 @@ if selected == 'Home':
 
 # Data Description Page
 if selected == 'Data Description':
-  from PIL import Image
+#  from PIL import Image
 
   # Load the image background
-  image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/background.png"
+  image_path = os.path.join(working_dir, "Foto/background.png")
   image = Image.open(image_path)
   buffered = io.BytesIO()
   image.save(buffered, format="PNG")
@@ -377,10 +376,10 @@ if selected == 'Data Description':
 
 # Analytics Page 
 if selected == 'Analytics':
-    from PIL import Image
+  #  from PIL import Image
 
     # Load the image background
-    image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/background.png"
+    image_path = os.path.join(working_dir, "Foto/background.png")
     image = Image.open(image_path)
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
@@ -400,10 +399,8 @@ if selected == 'Analytics':
         unsafe_allow_html=True
     )
 
-    # Dataset Describe
-    df2 = load_data2()
-    # Dataset Train Mix (categorical and numeric)
     df = load_data()
+    df2 = load_data2()
 
     # page title
     st.title('Data Analysis Visualization')
@@ -487,10 +484,10 @@ if selected == 'Analytics':
 
 # Water Prediction Page
 if selected == 'Water Prediction':
-    from PIL import Image
+ #   from PIL import Image
 
     # Load the image background
-    image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/background.png"
+    image_path = os.path.join(working_dir, "Foto/background.png")
     image = Image.open(image_path)
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
@@ -652,10 +649,10 @@ if selected == 'Water Prediction':
 
 # About Us Page
 if selected == 'About Us':
-    from PIL import Image
+ #   from PIL import Image
 
     # Load the image background
-    image_path = "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/background.png"
+    image_path = os.path.join(working_dir, "Foto/background.png")
     image = Image.open(image_path)
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
@@ -677,37 +674,37 @@ if selected == 'About Us':
     
     st.title('About Us')
     st.markdown('---')
-    from PIL import Image
+ #   from PIL import Image
 
     team_members = [
         {
             "name": "Salsabila Nur Yasmin",
             "role": "Mentor",
-            "image_id": "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/salsa.png",
+            "image_id": os.path.join(working_dir, "Foto/salsa.png"),
             "description": "Salsa is an experienced data scientist with over 10 years of experience in the industry. She has mentored numerous teams and helped them achieve their goals."
         },
         {
             "name": "Lutfi Julpian",
             "role": "Project Leader",
-            "image_id": "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/lutfi.png",
+            "image_id": os.path.join(working_dir, "Foto/lutfi.png"),
             "description": "Lutfi leads the project with a strong vision and excellent management skills. He ensures the project stays on track and meets all deadlines."
         },
         {
             "name": "Vindiani Nora Putri",
             "role": "Data Analyst",
-            "image_id": "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/Vindi.png",
+            "image_id": os.path.join(working_dir, "Foto/Vindi.png"),
             "description": "Vindi is a data analyst with a knack for uncovering insights from complex datasets. She specializes in statistical analysis and data modeling."
         },
         {
             "name": "Jauza Hayah Anbari",
             "role": "Data Visualization",
-            "image_id": "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/Jauza.png",
+            "image_id": os.path.join(working_dir, "Foto/Jauza.png"),
             "description": "Jauza is responsible for creating intuitive and informative data visualizations. She helps transform raw data into compelling stories."
         },
         {
             "name": "I Kadek Ananda Krisna Wiralaksana",
             "role": "Modeller",
-            "image_id": "/content/drive/MyDrive/GreatEdu/Final_Project/Foto/nanda.png",
+            "image_id": os.path.join(working_dir, "Foto/nanda.png"),
             "description": "Nanda builds predictive models that help us understand and forecast trends. He is skilled in machine learning and AI technologies."
         }
     ]
