@@ -8,6 +8,9 @@ from PIL import Image
 import streamlit as st
 import plotly.express as px
 from streamlit_option_menu import option_menu
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 st.set_page_config(
     page_title="Water Prediction",
@@ -504,10 +507,6 @@ if selected == 'Water Prediction':
         """,
         unsafe_allow_html=True
     )
-
-    from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-    from sklearn.model_selection import train_test_split
-    from sklearn.preprocessing import StandardScaler
 
     # Function to prepare the data for modeling
     def model_prepare(df_modeller, selected_features, target_feature):
