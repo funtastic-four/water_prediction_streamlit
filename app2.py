@@ -459,11 +459,11 @@ if selected == 'Analytics':
 
       selected_view = st.selectbox("Select Distribution Some Feature:", ["CompositionC by Result","FeatureD, FeatureE, FeatureF by Result", "Water Quality by Result"])
       if selected_view == "CompositionC by Result":
-        fig = px.line(df, x='compositionC', y='result', title='CompositionC Distribution by Result')
+        fig = px.scatter(df, x='compositionC', y='result', title='CompositionC Distribution by Result')
         st.plotly_chart(fig, use_container_width=True)
       
       elif selected_view == "FeatureD, FeatureE, FeatureF by Result":
-        fig = px.line(df, x=['featureD','featureE','featureF'], y='result', title='FeatureD, FeatureE, FeatureF Distribution by Result')
+        fig = px.scatter(df, x=['featureD','featureE','featureF'], y='result', title='FeatureD, FeatureE, FeatureF Distribution by Result')
         st.plotly_chart(fig, use_container_width=True)
 
       elif selected_view == "Water Quality by Result":
