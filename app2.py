@@ -20,14 +20,9 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Load the saved models
 # pickle
-model_path = os.path.join(working_dir, "saved_models", "XGB_model.pkl")
+model_path = os.path.join(working_dir, "saved_models", "RandomF_model.pkl")
 with open(model_path, 'rb') as f:
     water_model = pickle.load(f)
-# def load_model():
-#     with open('saved_models/XGB_model.pkl', 'rb') as f:
-#         return pickle.load(f)
-
-# water_model = load_model()
 
 # Sidebar navigation
 with st.sidebar:
@@ -67,7 +62,6 @@ def load_data3():
 
 # Home Page
 if selected == 'Home':
- # from PIL import Image
     
   # Load the image background
   image_path = os.path.join(working_dir, "Foto/background.png")
@@ -301,7 +295,6 @@ if selected == 'Home':
 
 # Data Description Page
 if selected == 'Data Description':
-#  from PIL import Image
 
   # Load the image background
   image_path = os.path.join(working_dir, "Foto/background.png")
@@ -381,7 +374,6 @@ if selected == 'Data Description':
 
 # Analytics Page 
 if selected == 'Analytics':
-  #  from PIL import Image
 
     # Load the image background
     image_path = os.path.join(working_dir, "Foto/background.png")
@@ -427,9 +419,9 @@ if selected == 'Analytics':
         category_counts = df['categoryA'].value_counts()
         threshold_percentage = 1.00 / 100
         threshold = threshold_percentage * len(df)
-        df['categoryA_modified'] = df['categoryA'].apply(
+        df['category_A'] = df['categoryA'].apply(
             lambda x: x if category_counts[x] >= threshold else 'Other')
-        fig1 = px.pie(df, names='categoryA_modified', title='CategoryA Distribution')
+        fig1 = px.pie(df, names='category_A', title='CategoryA Distribution')
         st.plotly_chart(fig1, use_container_width=True)
       
       elif selected_view == "Unit Distribution":
@@ -462,11 +454,11 @@ if selected == 'Analytics':
 
       selected_view = st.selectbox("Select Distribution Some Feature:", ["CompositionC by Result","FeatureD, FeatureE, FeatureF by Result", "Water Quality by Result"])
       if selected_view == "CompositionC by Result":
-        fig = px.scatter(df, x='compositionC', y='result', title='CompositionC Distribution by Result')
+        fig = px.line(df, x='compositionC', y='result', title='CompositionC Distribution by Result')
         st.plotly_chart(fig, use_container_width=True)
       
       elif selected_view == "FeatureD, FeatureE, FeatureF by Result":
-        fig = px.scatter(df, x=['featureD','featureE','featureF'], y='result', title='FeatureD, FeatureE, FeatureF Distribution by Result')
+        fig = px.line(df, x=['featureD','featureE','featureF'], y='result', title='FeatureD, FeatureE, FeatureF Distribution by Result')
         st.plotly_chart(fig, use_container_width=True)
 
       elif selected_view == "Water Quality by Result":
@@ -484,12 +476,11 @@ if selected == 'Analytics':
     fig3 = px.bar(df, x='categoryC', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryC by FeatureD,FeatureE,FeatureF,CompositionC')
     st.plotly_chart(fig3, use_container_width=True)
 
-    fig4 = px.bar(df, x='categoryA_modified', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
+    fig4 = px.bar(df, x='category_A', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
     st.plotly_chart(fig4, use_container_width=True)
 
 # Water Prediction Page
 if selected == 'Water Prediction':
- #   from PIL import Image
 
     # Load the image background
     image_path = os.path.join(working_dir, "Foto/background.png")
@@ -654,7 +645,6 @@ if selected == 'Water Prediction':
 
 # About Us Page
 if selected == 'About Us':
- #   from PIL import Image
 
     # Load the image background
     image_path = os.path.join(working_dir, "Foto/background.png")
