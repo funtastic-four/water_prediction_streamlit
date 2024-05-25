@@ -406,7 +406,7 @@ if selected == 'Analytics':
           </style>
       """, unsafe_allow_html=True)
 
-      selected_view = st.selectbox("Select Distribution One Feature:", ["CategoryA Distribution", "Unit Distribution","Water Quality Distribution"])
+      selected_view = st.selectbox("Select Distribution:", ["CategoryA Distribution", "Unit Distribution","Water Quality Distribution"])
       if selected_view == "CategoryA Distribution":
         category_counts = df['categoryA'].value_counts()
         threshold_percentage = 1.00 / 100
@@ -430,7 +430,7 @@ if selected == 'Analytics':
           </style>
       """, unsafe_allow_html=True)
 
-      selected_view = st.selectbox("Select Distribution Some Feature:", ["Water Quality Distribution", "Water Quality by Result"])      
+      selected_view = st.selectbox("Select Distribution:", ["Water Quality Distribution", "Water Quality by Result"])      
       if selected_view == "Water Quality Distribution":
         fig3 = px.pie(df, names='water_quality',color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
