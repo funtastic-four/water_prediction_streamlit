@@ -113,6 +113,9 @@ if selected == 'Home':
   st.markdown(
       f"""
       <style>
+      .sidebar .sidebar-content {{
+            width: 200px;
+        }}
       .stApp {{
           background-image: url("data:image/jpeg;base64,{img_str}");
           background-size: cover;
@@ -435,7 +438,7 @@ if selected == 'Analytics':
         st.plotly_chart(fig2, use_container_width=True)
       
       elif selected_view == "Water Quality Distribution":
-        fig6 = px.bar(df, x='water_quality',color='water_quality', title='Water Quality Distribution',
+        fig6 = px.pie(df, x='water_quality',color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
                       'Very Poor': '#A70A05',
                       'Poor': '#FE0901',
@@ -457,12 +460,8 @@ if selected == 'Analytics':
           </style>
       """, unsafe_allow_html=True)
 
-      selected_view = st.selectbox("Select Distribution Some Feature:", ["CompositionC by Result","FeatureD, FeatureE, FeatureF by Result", "Water Quality by Result"])
-      if selected_view == "CompositionC by Result":
-        fig = px.scatter(df, x='compositionC', y='result', title='CompositionC Distribution by Result')
-        st.plotly_chart(fig, use_container_width=True)
-      
-      elif selected_view == "FeatureD, FeatureE, FeatureF by Result":
+      selected_view = st.selectbox("Select Distribution Some Feature:", ["FeatureD, FeatureE, FeatureF by Result", "Water Quality by Result"])      
+      if selected_view == "FeatureD, FeatureE, FeatureF by Result":
         fig = px.scatter(df, x=['featureD','featureE','featureF'], y='result', title='FeatureD, FeatureE, FeatureF Distribution by Result')
         st.plotly_chart(fig, use_container_width=True)
 
