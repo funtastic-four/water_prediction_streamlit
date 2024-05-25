@@ -113,9 +113,6 @@ if selected == 'Home':
   st.markdown(
       f"""
       <style>
-      .sidebar .sidebar-content {{
-            width: 200px;
-        }}
       .stApp {{
           background-image: url("data:image/jpeg;base64,{img_str}");
           background-size: cover;
@@ -438,7 +435,7 @@ if selected == 'Analytics':
         st.plotly_chart(fig2, use_container_width=True)
       
       elif selected_view == "Water Quality Distribution":
-        fig6 = px.pie(df, x='water_quality',color='water_quality', title='Water Quality Distribution',
+        fig6 = px.pie(df, names='water_quality',color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
                       'Very Poor': '#A70A05',
                       'Poor': '#FE0901',
