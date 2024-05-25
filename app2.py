@@ -247,19 +247,6 @@ if selected == 'Home':
                       Dengan memantau kualitas air secara berkala dan melakukan prediksi yang akurat, tujuan ini adalah untuk melindungi kesehatan masyarakat dari risiko yang berkaitan dengan konsumsi air yang tercemar. Hal ini akan membantu dalam mengurangi risiko penyakit terkait air dan meningkatkan kualitas hidup masyarakat secara keseluruhan.
                   </p>
                 </div>
-                <div class="benefit">
-                  <h6 style="text-align: center;">Benefit</h6>
-                  <p style="font-size: 0.8em; text-align: justify;">
-                      <span><b>1. Perlindungan Lingkungan</b></span><br>
-                      Dengan memahami dan memprediksi kualitas air secara akurat, kita dapat mengidentifikasi dan mengurangi dampak negatif terhadap lingkungan air. Hal ini akan membantu dalam mengurangi polusi air dan mendukung keberlanjutan lingkungan.<br>
-                      <span><b>2. Peningkatan Kesehatan Masyarakat</b></span><br>
-                      Dengan memastikan kualitas air yang aman dan bersih, studi ini dapat membantu dalam melindungi kesehatan masyarakat dari risiko penyakit terkait air. Hal ini akan memberikan manfaat langsung bagi kesejahteraan masyarakat yang menggunakan sumber air tersebut.<br>
-                      <span><b>3. Pengelolaan Sumber Daya Air yang Lebih Efektif</b></span><br>
-                      Dengan menggunakan prediksi kualitas air, kita dapat mengelola sumber daya air secara lebih efektif. Hal ini termasuk dalam pengelolaan pasokan air, penentuan kebijakan lingkungan, dan pengambilan keputusan terkait penggunaan air untuk kebutuhan industri, pertanian, dan perkotaan.<br>
-                      <span><b>4. Peningkatan Kesadaran Masyarakat</b></span><br>
-                      Melalui informasi yang diberikan tentang kualitas air, studi ini dapat meningkatkan kesadaran masyarakat tentang pentingnya menjaga kebersihan air. Hal ini dapat mendorong perilaku yang lebih bertanggung jawab terhadap lingkungan dan mempromosikan tindakan-tindakan untuk melindungi sumber daya air yang berharga.
-                  </p>
-                </div>
               </div>
           </div>
       </div>
@@ -433,22 +420,8 @@ if selected == 'Analytics':
         #st.subheader('Distribusi Unit')
         fig2 = px.pie(df, names='unit', title='Unit Distribution')
         st.plotly_chart(fig2, use_container_width=True)
-      
-      elif selected_view == "Water Quality Distribution":
-        fig6 = px.pie(df, names='water_quality',color='water_quality', title='Water Quality Distribution',
-                      color_discrete_map={
-                      'Very Poor': '#A70A05',
-                      'Poor': '#FE0901',
-                      'Standard': '#D4AC0D',
-                      'Good': '#58D68D',
-                      'Very Good': '#052EAF'
-            }
-        )
-        st.plotly_chart(fig6, use_container_width=True)
 
     with col2:
-      df3 = load_data3()
-
       st.markdown("""
           <style>
           div[data-baseweb="select"] > div {
@@ -457,13 +430,9 @@ if selected == 'Analytics':
           </style>
       """, unsafe_allow_html=True)
 
-      selected_view = st.selectbox("Select Distribution Some Feature:", ["FeatureD, FeatureE, FeatureF by Result", "Water Quality by Result"])      
-      if selected_view == "FeatureD, FeatureE, FeatureF by Result":
-        fig = px.scatter(df, x=['featureD','featureE','featureF'], y='result', title='FeatureD, FeatureE, FeatureF Distribution by Result')
-        st.plotly_chart(fig, use_container_width=True)
-
-      elif selected_view == "Water Quality by Result":
-        fig5 = px.box(df, x='water_quality', y='result', color='water_quality', title='Water Quality by Result',
+      selected_view = st.selectbox("Select Distribution Some Feature:", ["Water Quality Distribution", "Water Quality by Result"])      
+      if selected_view == "Water Quality Distribution":
+        fig3 = px.pie(df, names='water_quality',color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
                       'Very Poor': '#A70A05',
                       'Poor': '#FE0901',
@@ -472,13 +441,25 @@ if selected == 'Analytics':
                       'Very Good': '#052EAF'
             }
         )
-        st.plotly_chart(fig5, use_container_width=True)
+        st.plotly_chart(fig3, use_container_width=True)
 
-    fig3 = px.bar(df, x='categoryC', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryC by FeatureD,FeatureE,FeatureF,CompositionC')
-    st.plotly_chart(fig3, use_container_width=True)
+      elif selected_view == "Water Quality by Result":
+        fig4 = px.box(df, x='water_quality', y='result', color='water_quality', title='Water Quality by Result',
+                      color_discrete_map={
+                      'Very Poor': '#A70A05',
+                      'Poor': '#FE0901',
+                      'Standard': '#D4AC0D',
+                      'Good': '#58D68D',
+                      'Very Good': '#052EAF'
+            }
+        )
+        st.plotly_chart(fig4, use_container_width=True)
 
-    fig4 = px.bar(df, x='category_A', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
-    st.plotly_chart(fig4, use_container_width=True)
+    fig5 = px.bar(df, x='categoryC', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryC by FeatureD,FeatureE,FeatureF,CompositionC')
+    st.plotly_chart(fig5, use_container_width=True)
+
+    fig6 = px.bar(df, x='category_A', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
+    st.plotly_chart(fig6, use_container_width=True)
 
 # Water Prediction Page
 if selected == 'Water Prediction':
@@ -615,23 +596,23 @@ if selected == 'Water Prediction':
 
         for prediction in water_prediction:
           if prediction <= 0.2:
-              diagnosis = f'{prediction}, Based on the new parameters, the water quality is Very Poor.'
+              diagnosis = f'Based on the new parameters, the water quality is Very Poor ({prediction})'
               background_color = 'background-color: #A70A05;'
               color = 'color: white;'
           elif prediction <= 0.4:
-              diagnosis = f'{prediction}, Based on the new parameters, the water quality is Poor.'
+              diagnosis = f'Based on the new parameters, the water quality is Poor ({prediction})'
               background_color = 'background-color: #FE0901;'
               color = 'color: white;'
           elif prediction <= 0.6:
-              diagnosis = f'{prediction}, Based on the new parameters, the water quality is Standard.'
+              diagnosis = f'Based on the new parameters, the water quality is Standard ({prediction})'
               background_color = 'background-color: #D4AC0D;'
               color = 'color: white;'
           elif prediction <= 0.8:
-              diagnosis = f'{prediction}, Based on the new parameters, the water quality is Good.'
+              diagnosis = f'Based on the new parameters, the water quality is Good ({prediction})'
               background_color = 'background-color: #58D68D;'
               color = 'color: white;'
           else:
-              diagnosis = f'{prediction}, Based on the new parameters, the water quality is Very Good.'
+              diagnosis = f'Based on the new parameters, the water quality is Very Good ({prediction})'
               background_color = 'background-color: #052EAF;'
               color = 'color: white;'
         
