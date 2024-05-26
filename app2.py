@@ -406,7 +406,7 @@ if selected == 'Analytics':
           </style>
       """, unsafe_allow_html=True)
 
-      selected_view = st.selectbox("Select Distribution:", ["CategoryA Distribution", "Unit Distribution","Water Quality Distribution"])
+      selected_view = st.selectbox("Select Distribution:", ["CategoryA Distribution", "Unit Distribution"])
       if selected_view == "CategoryA Distribution":
         category_counts = df['categoryA'].value_counts()
         threshold_percentage = 1.00 / 100
