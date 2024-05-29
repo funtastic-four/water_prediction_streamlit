@@ -321,8 +321,8 @@ if selected == 'Data Description':
   3. Kolom composition adalah susunan berbagai unsur seperti kertas, sampah plastik, karton, dan lain-lain di dalam air. Kolom composition ini terdiri dari compositionA, compositionB, compositionC, compositionD, compositionE, compositionF, compositionG, compositionH, compositionI, dan compositionJ.
   4. Kolom unit adalah satuan ukuran yang digunakan untuk mengukur nilai hasil.
   5. Kolom result adalah nilai yang menyatakan kualitas air berdasarkan berbagai faktor yang tersedia dalam kumpulan data.
-  6. Kolom water quality adalah kategori dari kualitas air berdasarkan nilai result yang dikelompokkan menjadi 5 kategori, nilai result dibawah = 0.2 kualitas air kategori very poor (sangat buruk), nilai result dibawah = 0.4 kualitas air kategori poor (buruk), 
-  nilai result dibawah = 0.6 kualitas air kategori standard (sedang/cukup), nilai result dibawah = 0.8 kualitas air kategori good (bagus), dan nilai result diatas = 0.8 kualitas air kategori very good (sangat bagus).
+  6. Kolom water quality adalah kategori dari kualitas air berdasarkan nilai result yang dikelompokkan menjadi 5 kategori, nilai result dibawah = 0,2 kualitas air kategori very poor (sangat buruk), nilai result dibawah = 0,4 kualitas air kategori poor (buruk), 
+  nilai result dibawah = 0,6 kualitas air kategori standard (sedang/cukup), nilai result dibawah = 0,8 kualitas air kategori good (bagus), dan nilai result diatas = 0,8 kualitas air kategori very good (sangat bagus).
   </div>""", unsafe_allow_html=True)
   st.markdown('<div>Berikut Dataset yang digunakan dalam prediksi kualitas air ini :</div>', unsafe_allow_html=True)
 
