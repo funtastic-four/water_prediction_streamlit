@@ -344,37 +344,38 @@ if selected == 'Data Description':
       st.dataframe(df.sort_values(by='water_quality'), width=1050)
       total_rows = len(df)
       total_columns = len(df.columns)
-      st.write(f"Total data terdiri dari {total_rows:,} baris dan {total_columns} kolom")
+      total_rows_formatted = "{:,}".format(total_rows).replace(",", ".")
+      st.write(f"Total data terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
   elif option == 'Very Poor':
       verypoor_df = df[df['water_quality'] == 'Very Poor'].sort_values(by='water_quality')
       st.dataframe(verypoor_df, width=1050)
       total_rows = len(verypoor_df)
       total_columns = len(verypoor_df.columns)
-      st.write(f"Total data Very Poor terdiri dari {total_rows:,} baris dan {total_columns} kolom")
+      st.write(f"Total data Very Poor terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
   elif option == 'Poor':
       poor_df = df[df['water_quality'] == 'Poor'].sort_values(by='water_quality')
       st.dataframe(poor_df, width=1050)
       total_rows = len(poor_df)
       total_columns = len(poor_df.columns)
-      st.write(f"Total data Poor terdiri dari {total_rows:,} baris dan {total_columns} kolom")
+      st.write(f"Total data Poor terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
   elif option == 'Standard':
       standard_df = df[df['water_quality'] == 'Standard'].sort_values(by='water_quality')
       st.dataframe(standard_df, width=1050)
       total_rows = len(standard_df)
       total_columns = len(standard_df.columns)
-      st.write(f"Total data Standard terdiri dari {total_rows:,} baris dan {total_columns} kolom")
+      st.write(f"Total data Standard terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
   elif option == 'Good':
       good_df = df[df['water_quality'] == 'Good'].sort_values(by='water_quality')
       st.dataframe(good_df, width=1050)
       total_rows = len(good_df)
       total_columns = len(good_df.columns)
-      st.write(f"Total data Good terdiri dari {total_rows:,} baris dan {total_columns} kolom")
+      st.write(f"Total data Good terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
   else:
       verygood_df = df[df['water_quality'] == 'Very Good'].sort_values(by='water_quality')
       st.dataframe(verygood_df, width=1050)
       total_rows = len(verygood_df)
       total_columns = len(verygood_df.columns)
-      st.write(f"Total data Very Good terdiri dari {total_rows:,} baris dan {total_columns} kolom")
+      st.write(f"Total data Very Good terdiri dari {total_rows_formatted} baris dan {total_columns} kolom")
 
 # Analytics Page 
 if selected == 'Analytics':
