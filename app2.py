@@ -343,26 +343,32 @@ if selected == 'Data Description':
   if option == 'All Data':
       st.dataframe(df.sort_values(by='water_quality'), width=1050)
       st.write(f"Total Data: {len(df)}")
+      st.write("Columns: ", df.columns.tolist())
   elif option == 'Very Poor':
       verypoor_df = df[df['water_quality'] == 'Very Poor'].sort_values(by='water_quality')
       st.dataframe(verypoor_df, width=1050)
       st.write(f"Total Data VeryPoor: {len(verypoor_df)}")
+      st.write("Columns: ", verypoor_df.columns.tolist())
   elif option == 'Poor':
       poor_df = df[df['water_quality'] == 'Poor'].sort_values(by='water_quality')
       st.dataframe(poor_df, width=1050)
       st.write(f"Total Data Poor: {len(poor_df)}")
+      st.write("Columns: ", poor_df.columns.tolist())
   elif option == 'Standard':
       standard_df = df[df['water_quality'] == 'Standard'].sort_values(by='water_quality')
       st.dataframe(standard_df, width=1050)
       st.write(f"Total Data Standard: {len(standard_df)}")
+      st.write("Columns: ", standard_df.columns.tolist())
   elif option == 'Good':
       good_df = df[df['water_quality'] == 'Good'].sort_values(by='water_quality')
       st.dataframe(good_df, width=1050)
       st.write(f"Total Data Good: {len(good_df)}")
+      st.write("Columns: ", good_df.columns.tolist())
   else:
       verygood_df = df[df['water_quality'] == 'Very Good'].sort_values(by='water_quality')
       st.dataframe(verygood_df, width=1050)
       st.write(f"Total Data VeryGood: {len(verygood_df)}")
+      st.write("Columns: ", verygood_df.columns.tolist())
 
 # Analytics Page 
 if selected == 'Analytics':
@@ -430,7 +436,7 @@ if selected == 'Analytics':
           </style>
       """, unsafe_allow_html=True)
 
-      selected_view = st.selectbox("Select Distribution:", ["Water Quality Distribution", "Water Quality by Result"])      
+      selected_view = st.selectbox("Select Distribution:", ["Water Quality Distribution"])      
       if selected_view == "Water Quality Distribution":
         fig3 = px.pie(df, names='water_quality',color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
@@ -442,18 +448,6 @@ if selected == 'Analytics':
             }
         )
         st.plotly_chart(fig3, use_container_width=True)
-
-      elif selected_view == "Water Quality by Result":
-        fig4 = px.box(df, x='water_quality', y='result', color='water_quality', title='Water Quality by Result',
-                      color_discrete_map={
-                      'Very Poor': '#A70A05',
-                      'Poor': '#FE0901',
-                      'Standard': '#D4AC0D',
-                      'Good': '#58D68D',
-                      'Very Good': '#052EAF'
-            }
-        )
-        st.plotly_chart(fig4, use_container_width=True)
 
     fig5 = px.bar(df, x='categoryC', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryC by FeatureD,FeatureE,FeatureF,CompositionC')
     st.plotly_chart(fig5, use_container_width=True)
@@ -654,7 +648,7 @@ if selected == 'About Us':
             "name": "Salsabila Nur Yasmin",
             "role": "Mentor",
             "image_id": os.path.join(working_dir, "Foto/salsa.png"),
-            "description": "Salsa is an experienced data scientist with over 10 years of experience in the industry. She has mentored numerous teams and helped them achieve their goals."
+            "description": "Salsa is an experienced data scientist with over 2 years of experience in the industry. She has mentored numerous teams and helped them achieve their goals."
         },
         {
             "name": "Lutfi Julpian",
