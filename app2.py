@@ -350,7 +350,7 @@ if selected == 'Data Description':
       st.dataframe(verypoor_df, width=1050)
       total_rows = len(verypoor_df)
       total_columns = len(verypoor_df.columns)
-      st.write(f"Total Data VeryPoor terdiri dari {total_rows} baris dan {total_columns} kolom")
+      st.write(f"Total Data Very Poor terdiri dari {total_rows} baris dan {total_columns} kolom")
   elif option == 'Poor':
       poor_df = df[df['water_quality'] == 'Poor'].sort_values(by='water_quality')
       st.dataframe(poor_df, width=1050)
@@ -374,7 +374,7 @@ if selected == 'Data Description':
       st.dataframe(verygood_df, width=1050)
       total_rows = len(verygood_df)
       total_columns = len(verygood_df.columns)
-      st.write(f"Total Data VeryGood terdiri dari {total_rows} baris dan {total_columns} kolom")
+      st.write(f"Total Data Very Good terdiri dari {total_rows} baris dan {total_columns} kolom")
 
 # Analytics Page 
 if selected == 'Analytics':
