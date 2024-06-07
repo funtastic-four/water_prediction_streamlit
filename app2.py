@@ -436,7 +436,8 @@ if selected == 'Analytics':
       
       elif selected_view == "Unit Distribution":
         #st.subheader('Distribusi Unit')
-        fig2 = px.pie(df, names='unit', title='Unit Distribution')
+        unit_result_counts = df.groupby(['unit', 'result']).size().reset_index(name='counts')
+        fig2 = px.pie(unit_result_counts, names='unit',  values='counts', title='Unit by Result')
         st.plotly_chart(fig2, use_container_width=True)
 
     with col2:
@@ -450,7 +451,8 @@ if selected == 'Analytics':
 
       selected_view = st.selectbox("Select Distribution:", ["Water Quality Distribution"])      
       if selected_view == "Water Quality Distribution":
-        fig3 = px.pie(df, names='water_quality',color='water_quality', title='Water Quality Distribution',
+        water_quality_result_counts = df.groupby(['result', 'water_quality']).size().reset_index(name='counts')
+        fig3 = px.pie(water_quality_result_counts, names='water_quality',color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
                       'Very Poor': '#A70A05',
                       'Poor': '#FE0901',
