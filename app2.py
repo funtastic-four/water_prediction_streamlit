@@ -431,7 +431,7 @@ if selected == 'Analytics':
         threshold = threshold_percentage * len(df)
         df['category_A'] = df['categoryA'].apply(lambda x: x if category_counts[x] >= threshold else 'Other')
         
-        fig1 = px.pie(category_result_counts, names='category_A', values='counts', title='CategoryA by Result')
+        fig1 = px.pie(df, names='category_A', values='counts', title='CategoryA by Result')
         st.plotly_chart(fig1, use_container_width=True)
       
       elif selected_view == "Unit Distribution":
