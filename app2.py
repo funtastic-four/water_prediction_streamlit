@@ -426,16 +426,12 @@ if selected == 'Analytics':
 
       selected_view = st.selectbox("Select Distribution:", ["CategoryA Distribution", "Unit Distribution"])
       if selected_view == "CategoryA Distribution":
-        category_counts = df['categoryA'].value_counts()
-        threshold_percentage = 1.00 / 100
-        threshold = threshold_percentage * len(df)
-        df['category_A'] = df['categoryA'].apply(
-            lambda x: x if category_counts[x] >= threshold else 'Other')
-        fig1 = px.pie(df, names='category_A', title='CategoryA Distribution')
+        category_result_counts = df.groupby('categoryA')['result'].count().reset_index(name='counts')
+        category_result_counts['category_A'] = category_result_counts['categoryA'].apply(lambda x: x if category_result_counts[category_result_counts['categoryA'] == x]['counts'].values[0] >= threshold else 'Other')
+        fig1 = px.pie(category_result_counts, names='category_A', values='counts', title='CategoryA by Result')
         st.plotly_chart(fig1, use_container_width=True)
       
       elif selected_view == "Unit Distribution":
-        #st.subheader('Distribusi Unit')
         unit_result_counts = df.groupby(['unit', 'result']).size().reset_index(name='counts')
         fig2 = px.pie(unit_result_counts, names='unit',  values='counts', title='Unit by Result')
         st.plotly_chart(fig2, use_container_width=True)
@@ -462,12 +458,13 @@ if selected == 'Analytics':
             }
         )
         st.plotly_chart(fig3, use_container_width=True)
-
-    fig5 = px.bar(df, x='categoryC', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryC by FeatureD,FeatureE,FeatureF,CompositionC')
+          
+    category_counts = df['categoryA'].value_counts()
+    threshold_percentage = 1.00 / 100
+    threshold = threshold_percentage * len(df)
+    df['category_A'] = df['categoryA'].apply(lambda x: x if category_counts[x] >= threshold else 'Other')
+    fig5 = px.bar(df, x='category_A', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD,FeatureE,FeatureF,CompositionC')
     st.plotly_chart(fig5, use_container_width=True)
-
-    fig6 = px.bar(df, x='category_A', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD, FeatureE, FeatureF, CompositionC')
-    st.plotly_chart(fig6, use_container_width=True)
 
 # Water Prediction Page
 if selected == 'Water Prediction':
