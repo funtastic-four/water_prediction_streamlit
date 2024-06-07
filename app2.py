@@ -465,6 +465,12 @@ if selected == 'Analytics':
     fig5 = px.bar(df, x='category_A', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: CategoryA by FeatureD,FeatureE,FeatureF,CompositionC')
     st.plotly_chart(fig5, use_container_width=True)
 
+    fig6 = px.bar(df, x='result', y=['categoryA','categoryC'], title='Bar Chart: Result by categoryA, categoryC')
+    st.plotly_chart(fig6, use_container_width=True)
+    
+    fig7 = px.bar(df, x='result', y=['featureD', 'featureE', 'featureF', 'compositionC'], title='Bar Chart: Result by FeatureD,FeatureE,FeatureF,CompositionC')
+    st.plotly_chart(fig7, use_container_width=True)
+
 # Water Prediction Page
 if selected == 'Water Prediction':
 
