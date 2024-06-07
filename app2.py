@@ -452,7 +452,7 @@ if selected == 'Analytics':
       selected_view = st.selectbox("Select Distribution:", ["Water Quality Distribution"])      
       if selected_view == "Water Quality Distribution":
         water_quality_result_counts = df.groupby(['result', 'water_quality']).size().reset_index(name='counts')
-        fig3 = px.pie(water_quality_result_counts, names='water_quality',color='water_quality', title='Water Quality Distribution',
+        fig3 = px.pie(water_quality_result_counts, names='water_quality', values='counts', color='water_quality', title='Water Quality Distribution',
                       color_discrete_map={
                       'Very Poor': '#A70A05',
                       'Poor': '#FE0901',
